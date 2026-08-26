@@ -1,11 +1,11 @@
 <div align="center">
   <h1>🤖 Telegram Bot Template</h1>
-  <p><i>A structured, modular, and professional template for building robust <a href="https://telegraf.js.org/">Telegraf v4</a> bots in TypeScript.</i></p>
+  <p><i>A structured, modular, and professional template for building robust <a href="https://telegraf.js.org/">Telegraf v4</a> bots in JavaScript (ESM).</i></p>
 
   <p>
-    <a href="https://telegraf.js.org/"><img src="https://img.shields.io/badge/Telegraf-v4-blue?style=for-the-badge&logo=telegram" alt="Telegraf v4" /></a>
-    <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-Ready-blue?style=for-the-badge&logo=typescript" alt="TypeScript" /></a>
-    <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-v20+-green?style=for-the-badge&logo=node.js" alt="Node.js" /></a>
+    <a href="https://telegraf.js.org/"><img src="https://img.shields.io/badge/Telegraf-Hardened-blue?style=for-the-badge&logo=telegram" alt="Telegraf Hardened" /></a>
+    <a href="https://www.prisma.io/"><img src="https://img.shields.io/badge/Prisma-ORM-blue?style=for-the-badge&logo=prisma" alt="Prisma" /></a>
+    <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-v18+-green?style=for-the-badge&logo=node.js" alt="Node.js" /></a>
   </p>
 </div>
 
@@ -15,11 +15,12 @@
 
 The template relies on file-based routing to keep your logic strictly organized:
 
-- `src/configs/config.ts`: Define your bot's static configurations, developer IDs, and global reply messages here.
+- `src/configs/config.js`: Define your bot's static configurations, developer IDs, and global reply messages here.
 - `src/commands/`: Place strict Slash Commands (`/command`) here.
 - `src/inlineButtons/`: Place handlers for `callback_query` (Inline Keyboard button clicks) here.
 - `src/keyboardButtons/`: Place strict handlers for Reply Keyboard text clicks here.
 - `src/events/`: Place your standard Telegram event listeners (like `new_chat_members`, `inline_query`) here.
+- `src/helpers/prisma.js`: Pre-configured Prisma Client instance.
 
 ---
 
@@ -30,15 +31,14 @@ This template abstracts away the boilerplate of registering commands and strict 
 - **Automatic Command Syncing**: Command metadata (descriptions and names) automatically sync to the Telegram UI menu when the bot starts. You can exclude specific commands using the `hideFromMenu` property.
 - **Component Routing**: Supports granular, file-based routing for **Slash Commands**, **Inline Buttons**, **Keyboard Buttons**, and **Inline Queries (Autocomplete)**. Handlers automatically register themselves on boot without cluttering a central file.
 - **Built-in Execution Guards**: Intercept commands globally before execution. Support for `ownerOnly`, `developerOnly`, `adminOnly`, `privateOnly`, `groupOnly`, missing argument enforcement, and per-user `cooldown` rates natively baked in.
-
-> 📖 **[Read the Wiki](https://github.com/sea-deep/telegram-bot-template/wiki)** to learn how to create these commands and map your components.
+- **Prisma ORM Integrated**: Includes Prisma setup with SQLite database default and a singleton client in `src/helpers/prisma.js`.
 
 ---
 
 ## 🚀 Quickstart
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) v20 or higher
+- [Node.js](https://nodejs.org/) v18 or higher
 - A Telegram Bot Token (from [@BotFather](https://t.me/BotFather) on Telegram)
 
 ### Installation
@@ -61,8 +61,10 @@ This template abstracts away the boilerplate of registering commands and strict 
    ```
    > 🔑 *Open `.env` and insert your `BOT_TOKEN`.*
 
-4. **Enable BotFather Features (Optional but Recommended)**
-   Message `@BotFather` on Telegram and use `/setinline` to enable Inline Queries (autocomplete). Commands are synced automatically by the bot!
+4. **Initialize Database with Prisma**
+   ```bash
+   npm run prisma:push
+   ```
 
 ---
 
@@ -70,8 +72,8 @@ This template abstracts away the boilerplate of registering commands and strict 
 
 | Mode | Command | Description |
 | :--- | :--- | :--- |
-| **Development** | `npm run dev` | Runs the bot with hot-reloading via `tsx`. |
-| **Production** | `npm run build && npm start` | Compiles the TypeScript to `dist/` and starts the Node process. |
+| **Development** | `npm run dev` | Runs the bot with native `--watch` hot-reloading in Node.js. |
+| **Production** | `npm start` | Starts the Node.js process directly without needing compilation. |
 
 ---
 
@@ -80,40 +82,19 @@ This template abstracts away the boilerplate of registering commands and strict 
 ```text
 telegram-bot-template/
 ├── src/
-│   ├── configs/           # Centralized configuration (config.ts)
-│   ├── structures/        # TypeScript interfaces (Command, Event, InlineButton)
+│   ├── configs/           # Centralized configuration (config.js)
 │   ├── utilities/         # Core engine loaders (commandHandler, eventHandler, env)
-│   ├── helpers/           # Helper classes (Logger)
+│   ├── helpers/           # Helper classes (Logger, prisma)
 │   ├── commands/          # ➔ Your Slash Commands
 │   ├── events/            # ➔ Your Telegram Events & Inline Queries
 │   ├── inlineButtons/     # ➔ Your Callback Queries
 │   ├── keyboardButtons/   # ➔ Your Text/Keyboard Triggers
-│   └── index.ts           # Main entry point (registers loaders & launches bot)
+│   └── index.js           # Main entry point (registers loaders & launches bot)
+├── prisma/                # Prisma schema and configuration
 ├── .env.example           # Environment template
 └── package.json           # Dependencies and scripts
 ```
 
----
-
-## 🤝 Contributing, Issues, & Discussions
-
-We welcome all contributions! If you have a question, want to suggest a feature, or found a bug:
-- **Discussions**: Have an idea or need help? Start a thread in our [Discussions](#) tab.
-- **Issues**: Found a bug? Open an [Issue](#) with reproducible steps.
-- **Contributing**: Check out our [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on submitting Pull Requests.
-
----
-
-## 📚 Documentation
-
-> [!IMPORTANT]
-> Detailed technical guides, including a comprehensive **Beginner's Getting Started Guide**, can be found in the **[GitHub Wiki](https://github.com/sea-deep/telegram-bot-template/wiki)**.
-
----
-
-## 📄 License
-
-This project is licensed under the [GPL-3.0 License](./LICENSE).
 ---
 
 ## 🛡️ Telegraf vs Telegraf-Hardened
@@ -134,3 +115,9 @@ Project ini menggunakan **`telegraf-hardened`** sebagai pengganti `telegraf` sta
      - `telegraf-hardened/format`
      - `telegraf-hardened/types`
      - `telegraf-hardened/scenes`
+
+---
+
+## 📄 License
+
+This project is licensed under the [GPL-3.0 License](./LICENSE).

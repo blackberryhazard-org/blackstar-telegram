@@ -1,28 +1,15 @@
-# Multi-stage build for Telegraf TypeScript bot
-FROM node:20-alpine AS builder
-
-WORKDIR /app
-
-COPY package*.json ./
-COPY tsconfig.json ./
-
-RUN npm ci
-
-COPY src ./src
-
-RUN npm run build
-
-# Production runner stage
-FROM node:20-alpine AS runner
+FROM node:20-alpine
 
 WORKDIR /app
 
 ENV NODE_ENV=production
 
 COPY package*.json ./
+COPY prisma ./prisma
 
 RUN npm ci --only=production
+RUN npx prisma generate
 
-COPY --from=builder /app/dist ./dist
+COPY src ./src
 
-CMD ["node", "dist/index.js"]
+CMD ["node", "src/index.js"]
