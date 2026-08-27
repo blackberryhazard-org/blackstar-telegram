@@ -1,22 +1,35 @@
 {
-  "name": "blackstar-telegram",
-  "version": "0.1.0",
-  "description": "A blackstar bot for telegram",
-  "main": "index.js",
+  "name": "telegram-bot-template",
+  "version": "1.0.0",
+  "description": "A production-ready template for creating Telegram bots using Telegraf and TypeScript",
+  "keywords": [
+    "telegram",
+    "telegraf",
+    "bot",
+    "typescript",
+    "esm"
+  ],
+  "license": "ISC",
+  "author": "sea-deep",
+  "type": "module",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch src/index.js",
+    "build": "prisma generate",
+    "start": "node src/index.js",
+    "test": "vitest run",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/blackberryhazard-org/blackstar-telegram.git"
-  },
-  "author": "indra87g",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/blackberryhazard-org/blackstar-telegram/issues"
-  },
-  "homepage": "https://github.com/blackberryhazard-org/blackstar-telegram#readme",
   "dependencies": {
-    "telegraf-hardened": "^6.0.0"
+    "dotenv": "^17.4.2",
+    "glob": "^13.0.6",
+    "zod": "^4.4.3",
+    "telegraf-hardened": "^6.0.0",
+    "@prisma/client": "^6.4.0"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.10",
+    "prisma": "^6.4.0"
   }
 }
