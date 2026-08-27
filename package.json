@@ -1,21 +1,13 @@
 {
-  "name": "telegram-bot-template",
-  "version": "1.0.0",
+  "name": "blackstar-telegram",
+  "version": "0.1.0",
   "description": "A production-ready template for creating Telegram bots using Telegraf and TypeScript",
-  "keywords": [
-    "telegram",
-    "telegraf",
-    "bot",
-    "typescript",
-    "esm"
-  ],
-  "license": "ISC",
+  "license": "MIT",
   "author": "sea-deep",
   "type": "module",
   "main": "src/index.js",
   "scripts": {
     "dev": "node --watch src/index.js",
-    "build": "prisma generate",
     "start": "node src/index.js",
     "test": "vitest run",
     "prisma:generate": "prisma generate",
