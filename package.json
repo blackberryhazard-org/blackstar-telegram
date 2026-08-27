@@ -22,6 +22,6 @@
   },
   "devDependencies": {
     "vitest": "^4.1.10",
-    "prisma": "^6.4.0"
+    "prisma": "^7.9.1"
   }
 }
