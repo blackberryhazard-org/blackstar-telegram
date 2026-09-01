@@ -16,7 +16,7 @@
   "dependencies": {
     "dotenv": "^17.4.2",
     "glob": "^13.0.6",
-    "zod": "^4.4.3",
+    "zod": "^4.5.2",
     "telegraf-hardened": "^6.0.0",
     "@prisma/client": "^6.4.0"
   },
