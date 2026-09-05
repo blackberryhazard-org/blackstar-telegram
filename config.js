@@ -1,9 +1,7 @@
 const config = {
   users: {
     ownerId: "6362056930", // Replace with actual bot owner Telegram ID
-    partners: [],         // Array of partner Telegram IDs
     developers: [],       // Array of developer Telegram IDs
-    mustJoin: [],         // Array of must join channel/group IDs
   },
   messages: {
     NOT_BOT_OWNER: "❌ You do not have permission to run this command because you're not the bot owner!",
