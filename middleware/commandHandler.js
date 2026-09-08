@@ -1,6 +1,6 @@
-import { resolveFiles } from "./pathResolver.js";
+import { resolveFiles } from "../utils/pathResolver.js";
 import { checkCommandGuards } from "./CommandOptions.js";
-import { Logger } from "../helpers/Logger.js";
+import { Logger } from "../utils/Logger.js";
 
 export const commandsMap = new Map();
 
@@ -8,7 +8,7 @@ export async function loadCommands(bot) {
   commandsMap.clear();
 
   try {
-    const fileUrls = await resolveFiles("commands");
+    const fileUrls = await resolveFiles("plugins");
 
     for (const fileUrl of fileUrls) {
       const module = await import(fileUrl);

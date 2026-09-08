@@ -1,6 +1,6 @@
 import { fmt, bold, italic, code } from "telegraf-hardened/format";
 import { Markup } from "telegraf-hardened";
-import { commandsMap } from "../utilities/commandHandler.js";
+import { commandsMap } from "../../middleware/commandHandler.js";
 
 const helpCommand = {
   name: "help",

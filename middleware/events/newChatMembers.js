@@ -1,5 +1,5 @@
 import { message } from "telegraf-hardened/filters";
-import { Logger } from "../helpers/Logger.js";
+import { Logger } from "../../utils/Logger.js";
 
 const newChatMembersEvent = {
   type: message("new_chat_members"),

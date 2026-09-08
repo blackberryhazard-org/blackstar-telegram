@@ -1,5 +1,5 @@
-import { resolveFiles } from "./pathResolver.js";
-import { Logger } from "../helpers/Logger.js";
+import { resolveFiles } from "../utils/pathResolver.js";
+import { Logger } from "../utils/Logger.js";
 
 export const inlineButtonsMap = new Map();
 
@@ -7,7 +7,7 @@ export async function loadInlineButtons(bot) {
   inlineButtonsMap.clear();
 
   try {
-    const fileUrls = await resolveFiles("inlineButtons");
+    const fileUrls = await resolveFiles("middleware/buttons");
 
     for (const fileUrl of fileUrls) {
       const module = await import(fileUrl);
