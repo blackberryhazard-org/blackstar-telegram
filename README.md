@@ -11,16 +11,13 @@
 
 ---
 
-## 🧩 Where to Place Your Code
+## 🧩 Structure Codebase
 
-The template relies on file-based routing to keep your logic strictly organized:
+Codebase ini disusun secara modular berdasarkan 3 folder utama:
 
-- `src/configs/config.js`: Define your bot's static configurations, developer IDs, and global reply messages here.
-- `src/commands/`: Place strict Slash Commands (`/command`) here.
-- `src/inlineButtons/`: Place handlers for `callback_query` (Inline Keyboard button clicks) here.
-- `src/keyboardButtons/`: Place strict handlers for Reply Keyboard text clicks here.
-- `src/events/`: Place your standard Telegram event listeners (like `new_chat_members`, `inline_query`) here.
-- `src/helpers/prisma.js`: Pre-configured Prisma Client instance.
+- `plugins/`: Tempat menyimpan handler command/slash command yang dipisahkan berdasarkan kategori (contoh: `general/`, `utility/`, `interactive/`).
+- `middleware/`: Tempat menyimpan handler event listener bot (events, buttons, scenes, command options, serta loader handlers).
+- `utils/`: Tempat menyimpan utilitas pembantu (Logger, env parser, path resolver, prisma client).
 
 ---
 
@@ -31,7 +28,7 @@ This template abstracts away the boilerplate of registering commands and strict 
 - **Automatic Command Syncing**: Command metadata (descriptions and names) automatically sync to the Telegram UI menu when the bot starts. You can exclude specific commands using the `hideFromMenu` property.
 - **Component Routing**: Supports granular, file-based routing for **Slash Commands**, **Inline Buttons**, **Keyboard Buttons**, and **Inline Queries (Autocomplete)**. Handlers automatically register themselves on boot without cluttering a central file.
 - **Built-in Execution Guards**: Intercept commands globally before execution. Support for `ownerOnly`, `developerOnly`, `adminOnly`, `privateOnly`, `groupOnly`, missing argument enforcement, and per-user `cooldown` rates natively baked in.
-- **Prisma ORM Integrated**: Includes Prisma setup with SQLite database default and a singleton client in `src/helpers/prisma.js`.
+- **Prisma ORM Integrated**: Includes Prisma setup with SQLite database default and a singleton client in `utils/prisma.js`.
 
 ---
 
@@ -81,18 +78,19 @@ This template abstracts away the boilerplate of registering commands and strict 
 
 ```text
 telegram-bot-template/
-├── src/
-│   ├── configs/           # Centralized configuration (config.js)
-│   ├── utilities/         # Core engine loaders (commandHandler, eventHandler, env)
-│   ├── helpers/           # Helper classes (Logger, prisma)
-│   ├── commands/          # ➔ Your Slash Commands
-│   ├── events/            # ➔ Your Telegram Events & Inline Queries
-│   ├── inlineButtons/     # ➔ Your Callback Queries
-│   ├── keyboardButtons/   # ➔ Your Text/Keyboard Triggers
-│   └── index.js           # Main entry point (registers loaders & launches bot)
-├── prisma/                # Prisma schema and configuration
-├── .env.example           # Environment template
-└── package.json           # Dependencies and scripts
+├── plugins/           # ➔ Slash commands dipisahkan berdasarkan kategori
+│   ├── general/
+│   ├── utility/
+│   └── interactive/
+├── middleware/        # ➔ Event listeners, button triggers, scene stages, & handlers
+│   ├── events/
+│   ├── buttons/
+│   └── scenes/
+├── utils/             # ➔ Helper utilities (Logger, env, pathResolver, prisma)
+├── index.js           # Main entry point
+├── prisma/            # Prisma schema and configuration
+├── .env.example       # Environment template
+└── package.json       # Dependencies and scripts
 ```
 
 ---

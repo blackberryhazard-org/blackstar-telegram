@@ -1,5 +1,5 @@
-import config from "../configs/config.js";
-import { Logger } from "../helpers/Logger.js";
+import config from "../blackstar.config.js";
+import { Logger } from "../utils/Logger.js";
 
 const cooldowns = new Map();
 

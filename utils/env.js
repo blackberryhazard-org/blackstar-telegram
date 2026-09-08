@@ -1,6 +1,6 @@
 import { z } from "zod";
 import "dotenv/config";
-import { Logger } from "../helpers/Logger.js";
+import { Logger } from "./Logger.js";
 
 const envSchema = z.object({
   BOT_TOKEN: z.string().min(1, "BOT_TOKEN is required in the environment variables."),

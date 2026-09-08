@@ -1,4 +1,4 @@
-import { Logger } from "../helpers/Logger.js";
+import { Logger } from "../../utils/Logger.js";
 
 const fooButton = {
   name: "🌞 Foo",

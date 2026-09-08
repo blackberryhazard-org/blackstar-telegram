@@ -1,12 +1,12 @@
-import { resolveFiles } from "./pathResolver.js";
-import { Logger } from "../helpers/Logger.js";
+import { resolveFiles } from "../utils/pathResolver.js";
+import { Logger } from "../utils/Logger.js";
 
 export const eventsMap = new Map();
 
 export async function loadEvents(bot) {
   try {
     eventsMap.clear();
-    const fileUrls = await resolveFiles("events");
+    const fileUrls = await resolveFiles("middleware/events");
     let count = 0;
 
     for (const fileUrl of fileUrls) {

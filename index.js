@@ -1,11 +1,11 @@
 import { Telegraf, session } from "telegraf-hardened";
-import { env } from "./utilities/env.js";
-import { Logger } from "./helpers/Logger.js";
-import { loadCommands } from "./utilities/commandHandler.js";
-import { loadEvents } from "./utilities/eventHandler.js";
-import { loadInlineButtons } from "./utilities/inlineButtonHandler.js";
-import { loadKeyboardButtons } from "./utilities/keyboardButtonHandler.js";
-import { loadScenes, stage } from "./utilities/sceneHandler.js";
+import { env } from "./utils/env.js";
+import { Logger } from "./utils/Logger.js";
+import { loadCommands } from "./middleware/commandHandler.js";
+import { loadEvents } from "./middleware/eventHandler.js";
+import { loadInlineButtons } from "./middleware/inlineButtonHandler.js";
+import { loadKeyboardButtons } from "./middleware/keyboardButtonHandler.js";
+import { loadScenes, stage } from "./middleware/sceneHandler.js";
 
 Logger.info("Initializing Telegram Bot...");
 
