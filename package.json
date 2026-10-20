@@ -11,7 +11,7 @@
     "prisma:push": "prisma db push"
   },
   "dependencies": {
-    "dotenv": "^17.4.2",
+    "dotenv": "^18.0.8",
     "glob": "^13.0.6",
     "zod": "^4.4.3",
     "telegraf-hardened": "^6.0.0",
